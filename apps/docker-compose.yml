@@ -1,0 +1,26 @@
+services:
+  coordinator:
+    build: ./coordinator
+    environment:
+      - PORT=8080
+      - RING_REPLICAS=128
+    ports:
+      - "8080:8080"
+
+  shard-1:
+    build: ./shard
+    environment:
+      - PORT=8080
+      - COORDINATOR_URL=http://coordinator:8080
+      - SHARD_URL=http://shard-1:8080
+    depends_on:
+      - coordinator
+
+  shard-2:
+    build: ./shard
+    environment:
+      - PORT=8080
+      - COORDINATOR_URL=http://coordinator:8080
+      - SHARD_URL=http://shard-2:8080
+    depends_on:
+      - coordinator

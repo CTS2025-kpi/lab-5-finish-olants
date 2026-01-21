@@ -1,0 +1,8 @@
+aws_region        = "us-east-1"
+project_name      = "sharded-lab"
+
+# Set these to your images (ECR recommended):
+coordinator_image = "REPLACE_ME/coordinator:latest"
+shard_image       = "REPLACE_ME/shard:latest"
+
+shard_count       = 3
